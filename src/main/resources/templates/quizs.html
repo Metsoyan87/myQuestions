@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/admin">Admin</a> <br><br>
+
+<table border="1px">
+    <tr>
+        <th>id</th>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Delete</th>
+        <th>Change</th>
+
+    </tr>
+    <tr th:each="quiz: ${quizi}">
+        <td th:text="${quiz.id}"></td>
+        <td th:text="${quiz.title}"></td>
+        <td th:text="${quiz.created_date_time}"></td>
+        <td><a th:href="@{'/quizs/delete'+${quiz.id}}">Delete</a></td>
+        <td><a th:href="@{/quizs/edit(quizId=${quiz.id})}">Edit</a></td>
+    </tr>
+</table>
+
+</body>
+</html>

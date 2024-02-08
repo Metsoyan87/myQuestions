@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<form method="post" action="/addQuestion">
+    <div>
+        <input type="text" id="title" name="title" placeholder="Enter your Title"/>
+    </div>
+
+    <div>
+        <input type="text" id="score" name="score" placeholder="Enter your Score"/>
+    </div>
+
+    <select class="custom-select" name="user.id">
+        <option value="0">unassigned</option>
+        <option th:each="quiz: ${quizs}"
+                th:value="${user.id}"></option>
+    </select>
+
+    <div>
+        <a>Quiz_Id</a> <br>
+        <select name="QuizId" id="quiz_Id">
+            <option value="MULTI_SELECT">MULTI_SELECT</option>
+            <option value="SINGLE_SELECT">SINGLE_SELECT</option>
+        </select>
+    </div>
+
+    <input type="submit" class="fadeIn fourth" value="Register">
+
+</form>
+
+</body>
+</html>

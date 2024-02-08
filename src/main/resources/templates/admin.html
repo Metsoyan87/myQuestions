@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin page</title>
+</head>
+<body>
+<a href="/addQuiz">Add Quiz</a> <br><br>
+<a href="/quizs">All Quiz</a> <br><br>
+
+
+<div method="post">
+    <table border="1px">
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Password</th>
+            <th>Delete</th>
+            <th>Change</th>
+        </tr>
+
+        <tr th:each="user: ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.surname}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.userType}"></td>
+            <td th:text="${user.password}"></td>
+            <td><a th:href="@{'/users/delete'+${user.id}}">Delete</a></td>
+            <td><a th:href="@{/users/edit(userId=${user.id})}">edit</a></td>
+        </tr>
+    </table>
+
+
+    <div th:if="${users.totalPages > 0}" class="pagination"
+         th:each="pageNumber : ${pageNumbers}">
+        <a th:href="@{/admin(size=${users.size}, page=${pageNumber})}"
+           th:text="${pageNumber}"
+           th:class="${pageNumber==users.number + 1} ? active"></a>
+    </div>
+</div>
+
+</body>
+</html>

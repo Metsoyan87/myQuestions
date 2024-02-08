@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <a href="/users">My Page</a>
+<form th:action="@{'/users/edit/' + ${userId}}" method="post" enctype="multipart/form-data">
+
+
+    <input type="email" id="email" name="email" placeholder="email"/><br>
+    <input type="text" id="password" name="password" placeholder="password"/><br>
+<input type="submit" value="Edit User">
+</form>
+    </div>
+</div>
+</body>
+</html>
