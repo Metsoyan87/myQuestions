@@ -64,7 +64,7 @@ public class UserController {
     }
 
     @PostMapping("/addUser")
-    public String addUser(@ModelAttribute User user, ModelMap modelMap) throws IOException, MessagingException, DuplicateResourceException {
+    public String addUser(@ModelAttribute User user, ModelMap modelMap) throws DuplicateResourceException {
         Optional<User> byEmail = userServiceImpl.findByEmail(user.getEmail());
         if (byEmail.isEmpty()) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));

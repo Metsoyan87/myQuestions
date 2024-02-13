@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -16,15 +16,20 @@
         <input type="text" id="score" name="score" placeholder="Enter your Score"/>
     </div>
 
-    <select class="custom-select" name="user.id">
-        <option value="0">unassigned</option>
-        <option th:each="quiz: ${quizs}"
-                th:value="${user.id}"></option>
-    </select>
+    <div>
+        <a>Select Quiz Id</a> <br>
+        <select name="quiz.id" >>
+            <option value="0">unassigned</option>
+            <option th:each="quiz: ${quizi}">
+                <td th:text="${quiz.id}"></td>
+                <td th:value="${quiz.id}"></td>
+            </option>
+        </select>
+    </div>
 
     <div>
-        <a>Quiz_Id</a> <br>
-        <select name="QuizId" id="quiz_Id">
+        <a>QuestionType</a> <br>
+        <select name="QuestionType" id="QuestionType">
             <option value="MULTI_SELECT">MULTI_SELECT</option>
             <option value="SINGLE_SELECT">SINGLE_SELECT</option>
         </select>

@@ -54,10 +54,9 @@ public class QuizController {
     }
 
     @GetMapping("/quizs")
-    public String allQuizs(@RequestParam("page") Optional<Integer> page,
+    public String allQuiz(@RequestParam("page") Optional<Integer> page,
                            @RequestParam("size") Optional<Integer> size,
-                           ModelMap modelMap,
-                           @AuthenticationPrincipal CurrentUser currentUser) {
+                           ModelMap modelMap) {
 
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(5);

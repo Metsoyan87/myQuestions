@@ -14,21 +14,22 @@ import java.util.Optional;
 public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionRepository questionRepository;
+    public Object findAll;
 
     @Override
     public Optional<Question> findByTitle(String title) {
         return questionRepository.findByTitle(title);
     }
 
+
     @Override
-    public void saveQuestion(Question question) throws DuplicateResourceException {
-        if (questionRepository.findByTitle(question.getTitle()).isPresent()) {
-            throw new DuplicateResourceException("Question already exists");
-        }
+    public void saveQuestion(Question question)  {
         questionRepository.save(question);
     }
 
-
+    public Question findById(int id) {
+        return questionRepository.findById(id).orElse(null);
+    }
 
 
 }

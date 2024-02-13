@@ -19,14 +19,14 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(columnDefinition = "varchar(50)")
+    @Column(columnDefinition = "varchar(250)")
     private String title;
 
     @Column(columnDefinition = "int(11)")
     private int score;
 
     @ManyToOne
-    private Quiz quiz_id;
+    private Quiz quiz;
 
     @Enumerated(value = EnumType.STRING)
     private QuestionType questionType;

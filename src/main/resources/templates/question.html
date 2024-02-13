@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Question</title>
 </head>
 <body>
+<a href="/addQuiz">Add Quiz</a> <br>
+<a href="/quizs">All Quiz</a> <br>
+<a href="/addQuestion">Add Question</a> <br>
 
+
+<a>All Question</a><br><br>
 
 <div>
     <table border="1px">
@@ -19,10 +24,10 @@
         </tr>
 
         <tr th:each="question: ${questions}">
-            <td th:text="${questions.id}"></td>
-            <td th:text="${questions.title}"></td>
-            <td th:text="${questions.score}"></td>
-            <td th:text="${questions.quiz_id}"></td>
+            <td th:text="${question.id}"></td>
+            <td th:text="${question.title}"></td>
+            <td th:text="${question.score}"></td>
+            <td th:text="${question.quiz.id + ' ' + question.quiz.title}"></td>
             <td th:text="${question.questionType}"></td>
 
         </tr>

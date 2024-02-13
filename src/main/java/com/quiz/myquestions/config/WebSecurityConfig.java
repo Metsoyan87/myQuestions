@@ -25,21 +25,40 @@ public class WebSecurityConfig {
 
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        httpSecurity.csrf().disable()
+//        return http.authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
+//                .requestMatchers("/").permitAll()
+//                .requestMatchers("/loginPage").permitAll()
+//                .requestMatchers("/addUser").permitAll()
+//                .requestMatchers("/addQuestion").hasAuthority(UserType.TEACHER.name())
+//                .requestMatchers("/question").hasAuthority(UserType.TEACHER.name())
+//                .requestMatchers("/allQuiz").hasAuthority(UserType.TEACHER.name())
+//                .requestMatchers("/admin").hasAuthority(UserType.TEACHER.name())
+//                .requestMatchers("/addQuiz").hasAuthority(UserType.TEACHER.name())
+//                        .requestMatchers("/users").authenticated()
+//                        .requestMatchers("/quiz").authenticated()
+//                        .requestMatchers("/users/delete").hasAuthority(UserType.TEACHER.name())
+//                        .requestMatchers("/quizs/delete").hasAuthority(UserType.TEACHER.name())
+//                        .requestMatchers("/users/edit").authenticated()
+//        )
+//                .build();
+
+
+        http.
+                csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/").permitAll()
                 .requestMatchers("/loginPage").permitAll()
                 .requestMatchers("/addUser").permitAll()
                 .requestMatchers("/addQuestion").hasAuthority(UserType.TEACHER.name())
-                .requestMatchers("/question").hasAuthority(UserType.TEACHER.name())
+                .requestMatchers("/question").authenticated()
                 .requestMatchers("/allQuiz").hasAuthority(UserType.TEACHER.name())
                 .requestMatchers("/admin").hasAuthority(UserType.TEACHER.name())
                 .requestMatchers("/addQuiz").hasAuthority(UserType.TEACHER.name())
 
                 .requestMatchers("/users").authenticated()
-                .requestMatchers("/quiz").authenticated()
+                .requestMatchers("/quiz").hasAuthority(UserType.TEACHER.name())
                 .requestMatchers("/users/delete").hasAuthority(UserType.TEACHER.name())
                 .requestMatchers("/quizs/delete").hasAuthority(UserType.TEACHER.name())
                 .requestMatchers("/users/edit").authenticated()
@@ -59,7 +78,7 @@ public class WebSecurityConfig {
                 .logout()
                 .logoutSuccessUrl("/");
 
-        return httpSecurity.build();
+        return http.build();
     }
 
     @Bean

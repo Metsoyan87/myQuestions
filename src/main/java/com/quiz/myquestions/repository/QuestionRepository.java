@@ -10,6 +10,4 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
     Optional<Question> findByTitle(String title);
 
 
-
-
 }
