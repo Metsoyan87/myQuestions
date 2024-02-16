@@ -1,4 +1,4 @@
-package com.quiz.myquestions.controller.cuestionController;
+package com.quiz.myquestions.controller.questionController;
 
 import com.quiz.myquestions.entity.Question;
 import com.quiz.myquestions.entity.Quiz;
@@ -19,12 +19,11 @@ import java.util.List;
 public class QuestionController {
 
     private final QuestionServiceImpl questionServiceImpl;
-    private final QuestionRepository questionRepository;
     private final QuizServiceImpl quizServiceImpl;
 
 
     @GetMapping("/addQuestion")
-    public String addUserPage(ModelMap modelMap) {
+    public String addQuestion(ModelMap modelMap) {
         List<Quiz> quiz = quizServiceImpl.findAllQuizs();
         modelMap.addAttribute("quizi", quiz);
         return "addQuestion";
@@ -38,7 +37,7 @@ public class QuestionController {
     }
     @GetMapping ("/question")
     public String questionPage(ModelMap modelMap){
-        List <Question> questions = questionRepository.findAll();
+        List <Question> questions = questionServiceImpl.findAll();
         modelMap.addAttribute("questions", questions);
         return "question";
     }

@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AnswerServiceImpl implements AnswerService {
@@ -18,13 +20,11 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public Page<Answer> findByAnswerById(Answer answer, Pageable pageable) {
-        return answerRepository.findAnswerById(answer.getId(), pageable);
+        return null;
     }
 
-
-
     @Override
-    public void saveAnswer(Answer answer) throws DuplicateResourceException {
+    public void saveAnswer(Answer answer)  {
 
     }
 
@@ -36,5 +36,10 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public void editAnswerById(int id, EditAnswerDto dto) {
 
+    }
+
+    @Override
+    public List<Answer> findAll() {
+        return answerRepository.findAll();
     }
 }

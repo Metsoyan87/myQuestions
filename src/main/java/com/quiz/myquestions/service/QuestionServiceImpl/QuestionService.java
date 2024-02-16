@@ -16,4 +16,6 @@ public interface QuestionService {
     void saveQuestion(Question question) throws DuplicateResourceException;
 
     public Question findById(int id);
+
+    List<Question> findAll();
 }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/admin">Admin</a> <br><br>
+
+<table border="1px">
+    <tr>
+        <th>id</th>
+        <th>User_Id</th>
+        <th>Question_Id</th>
+        <th>QuestionOption_Id</th>
+        <th>Date</th>
+
+    </tr>
+    <tr th:each="answer: ${answers}">
+        <td th:text="${answer.id}"></td>
+        <td th:text="${answer.user.id +  ' ' + answer.user.name }"></td>
+        <td th:text="${answer.question.id +  ' ' + answer.question.title}"></td>
+        <td th:text="${answer.questionoption.id +  ' ' + answer.questionoption.title}"></td>
+        <td th:text="${answer.date_time}"></td>
+<!--        <td><a th:href="@{'/quizs/delete'+${quiz.id}}">Delete</a></td>-->
+<!--        <td><a th:href="@{/quizs/edit(quizId=${quiz.id})}">Edit</a></td>-->
+    </tr>
+</table>
+
+<div th:if="${quizi.totalPages > 0}" class="pagination"
+     th:each="pageNumber : ${pageNumbers}">
+    <a th:href="@{/quizs(size=${quizi.size}, page=${pageNumber})}"
+       th:text="${pageNumber}"
+       th:class="${pageNumber==quizi.number + 1} ? active"></a>
+</div>
+</body>
+</html>

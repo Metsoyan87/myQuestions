@@ -52,10 +52,10 @@ public class MainController {
             if (user.getUserType() == UserType.TEACHER) {
                 return "redirect:/admin";
             } else if (user.getUserType() == UserType.STUDENT) {
-                return "redirect:/quiz";
+                return "redirect:/quizs";
             }
         }
-        return "redirect:/quiz";
+        return "redirect:/quizs";
     }
 
 

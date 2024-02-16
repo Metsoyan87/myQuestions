@@ -18,11 +18,11 @@
 
     <div>
         <a>Select Quiz Id</a> <br>
-        <select name="quiz.id" >>
-            <option value="0">unassigned</option>
-            <option th:each="quiz: ${quizi}">
-                <td th:text="${quiz.id}"></td>
-                <td th:value="${quiz.id}"></td>
+        <select name="quiz.id">>
+
+            <option th:each="quiz: ${quizi}"
+                    th:text="${quiz.id + ' ' + quiz.title}"
+                    th:value="${quiz.id}">
             </option>
         </select>
     </div>

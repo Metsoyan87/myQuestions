@@ -9,22 +9,26 @@
 <a href="/admin">Back</a><br><br>
 
 <form method="post" action="/addQuestionOption">
-    <br>
-    <br>
 
     <div>
-        <label for="title">
-            <input type="text" id="title" name="title" placeholder="Enter Title"/>
-            <br th:if="${errorMessageTitle != null}">
-            <span style="color: red" th:if="${errorMessageTitle!=null}" th:text="${errorMessageTitle}"></span>
-            <span class="error" aria-live="polite"></span>
-        </label>
+        <a>Select Question Option Id</a> <br>
+        <select name="question.id">>
+
+            <option th:each="question: ${questions}"
+                    th:text="${question.id + ' ' + question.title}"
+                    th:value="${question.id}">
+            </option>
+        </select>
+    </div>
+    <div>
+        <input type="text" id="title" name="title" placeholder="Enter your Title"/>
+    </div>
+    <div>
+        <input type="text" id="isCorrect" name="isCorrect" placeholder="Enter your isCorrect"/>
     </div>
 
-    <div>
-        <input type="date" id="created_date_time" name="created_date_time" placeholder="Enter Date"/>
-    </div>
     <input type="submit" class="fadeIn fourth" value="Add">
+
 
 </form>
 

@@ -6,6 +6,7 @@ import com.quiz.myquestions.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -14,7 +15,7 @@ import java.util.Optional;
 public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionRepository questionRepository;
-    public Object findAll;
+
 
     @Override
     public Optional<Question> findByTitle(String title) {
@@ -29,6 +30,11 @@ public class QuestionServiceImpl implements QuestionService {
 
     public Question findById(int id) {
         return questionRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Question> findAll() {
+        return questionRepository.findAll();
     }
 
 

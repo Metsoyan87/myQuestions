@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.Optional;
 
 public interface UserService {
@@ -21,4 +22,6 @@ public interface UserService {
 
     public void deleteById(int id);
     public void editUser(int id, EditUserDto dto);
+
+
 }

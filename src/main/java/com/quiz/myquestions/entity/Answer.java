@@ -21,15 +21,17 @@ public class Answer {
     private int id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private User user_id;
+    private User user;
 
     @ManyToOne
-    private Question question_id;
+    private Question question;
 
     @ManyToOne
-    private QuestionOption questionOption_id;
+    private QuestionOption questionoption;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date_time;
+
+
 }
 

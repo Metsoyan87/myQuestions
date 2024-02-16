@@ -1,11 +1,11 @@
 package com.quiz.myquestions.service.QuestionOptionServiceImpl;
 
 import com.quiz.myquestions.entity.QuestionOption;
-import com.quiz.myquestions.exception.DuplicateResourceException;
 import com.quiz.myquestions.repository.QuestionOptionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,13 +20,16 @@ public class QuestionOptionServiceImpl implements QuestionOptionService {
     }
 
 
- @Override
-    public void saveQuestionOption(QuestionOption questionOption) throws DuplicateResourceException {
-        if (questionOptionRepository.findByTitle(questionOption.getTitle()).isPresent()){
-            throw new DuplicateResourceException("QuestionOption exists");
-
-        }
+    @Override
+    public void saveQuestionOption(QuestionOption questionOption) {
         questionOptionRepository.save(questionOption);
 
     }
+
+    @Override
+    public List<QuestionOption> findAll() {
+        return questionOptionRepository.findAll();
+    }
+
+
 }

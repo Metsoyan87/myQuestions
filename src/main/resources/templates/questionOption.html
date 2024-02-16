@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>QuestionOption</title>
+</head>
+<body>
+<a href="/addQuiz">Add Quiz</a> <br>
+<a href="/quizs">All Quiz</a> <br>
+<a href="/addQuestion">Add Question</a> <br>
+
+
+<a>All Question</a><br><br>
+
+<div>
+    <table border="1px">
+        <tr>
+            <th>id</th>
+            <th>Question Id</th>
+            <th>Title</th>
+            <th>Is Correct</th>
+
+        </tr>
+
+        <tr th:each="questionOption: ${questionOptions}">
+            <td th:text="${questionOption.id}"></td>
+            <td th:text="${questionOption.question.id+' '+questionOption.question.title}"></td>
+            <td th:text="${questionOption.title}"></td>
+            <td th:text="${questionOption.isCorrect()}"></td>
+
+
+        </tr>
+    </table>
+    <br>
+    <br>
+</div>
+
+
+</body>
+</html>

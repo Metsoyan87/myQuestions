@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<a href="/loginPage">Login</a> <br>
-<a href="/addUser">Registr</a> <br>
-<a href="/quiz">Quiz</a> <br>
-<a href="/logout">Logaout</a> <br>
+<a th:if="${currentUser == null}" href="/loginPage">Login</a>
+<a th:if="${currentUser != null}" href="/logout">Logout</a>
+<span th:if="${currentUser != null}" th:text="Welcome + ' ' + ${currentUser.name}"></span>
+<a th:if="${currentUser == null}" href="/addUser">Register</a> <br>
+<a href="/">Home</a>
+<a th:if="${currentUser != null && currentUser.userType == 'TEACHER'}" href="/admin">Admin Panel</a>
+<a th:if="${currentUser != null}" href="/quizs">Quiz</a>
+
 
 
 </body>

@@ -52,6 +52,8 @@ public class WebSecurityConfig {
                 .requestMatchers("/loginPage").permitAll()
                 .requestMatchers("/addUser").permitAll()
                 .requestMatchers("/addQuestion").hasAuthority(UserType.TEACHER.name())
+                .requestMatchers("/questionOption").hasAuthority(UserType.TEACHER.name())
+                .requestMatchers("/answer").hasAuthority(UserType.TEACHER.name())
                 .requestMatchers("/question").authenticated()
                 .requestMatchers("/allQuiz").hasAuthority(UserType.TEACHER.name())
                 .requestMatchers("/admin").hasAuthority(UserType.TEACHER.name())
@@ -61,7 +63,7 @@ public class WebSecurityConfig {
                 .requestMatchers("/quiz").hasAuthority(UserType.TEACHER.name())
                 .requestMatchers("/users/delete").hasAuthority(UserType.TEACHER.name())
                 .requestMatchers("/quizs/delete").hasAuthority(UserType.TEACHER.name())
-                .requestMatchers("/users/edit").authenticated()
+                .requestMatchers("/users/edit").hasAuthority(UserType.TEACHER.name())
 
                 .anyRequest()
                 .permitAll()

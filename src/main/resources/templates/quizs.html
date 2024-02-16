@@ -16,12 +16,18 @@
         <th>Change</th>
 
     </tr>
+
     <tr th:each="quiz: ${quizi}">
         <td th:text="${quiz.id}"></td>
         <td th:text="${quiz.title}"></td>
         <td th:text="${quiz.created_date_time}"></td>
-        <td><a th:href="@{'/quizs/delete'+${quiz.id}}">Delete</a></td>
-        <td><a th:href="@{/quizs/edit(quizId=${quiz.id})}">Edit</a></td>
+
+        <td>
+            <a th:href="@{'/quizs/delete'+${quiz.id}}">Delete</a>
+        </td>
+        <td>
+            <a th:href="@{/quizs/edit(quizId=${quiz.id})}">Edit</a>
+        </td>
     </tr>
 </table>
 

@@ -1,4 +1,5 @@
-package com.quiz.myquestions.entity;//package com.myQuiz.accessingdatajpa.entity;
+package com.quiz.myquestions.entity;
+
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "questionOption")
+@Table(name = "questionoption")
 public class QuestionOption {
 
     @Id
@@ -20,9 +21,9 @@ public class QuestionOption {
     private int id;
 
     @ManyToOne
-    private Question question_id;
+    private Question question;
 
-    @Column(columnDefinition = "varchar(50)")
+    @Column(columnDefinition = "varchar(250)")
     private String title;
 
     private boolean isCorrect;

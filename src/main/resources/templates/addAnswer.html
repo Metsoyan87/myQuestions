@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<form method="post" action="/addAnswer">
+    <div>
+        <a>Select User I'd</a> <br>
+        <select name="answer.user.id">
+            <option th:each="answer: ${answers}"
+                    th:text="${answer.user.id + ' ' + answer.user.name}"
+                    th:value="${answer.user.id}">
+            </option>
+        </select>
+    </div>
+
+    <div>
+        <a>Select Question I'd</a> <br>
+        <select name="answer.question.id">
+            <option th:each="answer: ${answers}"
+                    th:text="${answer.question.id + ' ' + answer.question.title}"
+                    th:value="${answer.question.id}">
+            </option>
+        </select>
+    </div>
+
+    <div>
+        <a>Select QuestionOption I'd</a> <br>
+        <select name="answer.questionoption.id">
+            <option th:each="answer: ${answers}"
+                    th:text="${answer.questionoption.id + ' ' + answer.questionoption.title}"
+                    th:value="${answer.questionoption.id}">
+            </option>
+        </select>
+    </div>
+
+    <div>
+        <input type="date" id="created_date_time" name="created_date_time" placeholder="Enter Date"/>
+    </div>
+
+    <input type="submit" class="fadeIn fourth" value="Register">
+
+</form>
+
+</body>
+</html>

@@ -7,9 +7,7 @@ import com.quiz.myquestions.entity.UserType;
 import com.quiz.myquestions.exception.DuplicateResourceException;
 import com.quiz.myquestions.security.CurrentUser;
 import com.quiz.myquestions.service.userServiceImpl.UserServiceImpl;
-import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -18,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,6 +33,19 @@ public class UserController {
     @GetMapping("/addUser")
     public String addUserPage() {
         return "addUser";
+    }
+
+    @PostMapping("/addUser")
+    public String addUser(@ModelAttribute User user, ModelMap modelMap) throws DuplicateResourceException {
+        Optional<User> byEmail = userServiceImpl.findByEmail(user.getEmail());
+        if (byEmail.isEmpty()) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setUserType(UserType.STUDENT);
+            userServiceImpl.save(user);
+            return "redirect:/loginPage";
+        } else {
+            return "redirect:/user/register?msg=Email already in use";
+        }
     }
 
     @GetMapping("/users/delete{id}")
@@ -60,19 +70,6 @@ public class UserController {
         } catch (IllegalStateException ex) {
             modelMap.addAttribute("errorMessage", ex.getMessage());
             return "users";
-        }
-    }
-
-    @PostMapping("/addUser")
-    public String addUser(@ModelAttribute User user, ModelMap modelMap) throws DuplicateResourceException {
-        Optional<User> byEmail = userServiceImpl.findByEmail(user.getEmail());
-        if (byEmail.isEmpty()) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.setUserType(UserType.STUDENT);
-            userServiceImpl.save(user);
-            return "redirect:/loginPage";
-        } else {
-            return "redirect:/user/register?msg=Email already in use";
         }
     }
 
