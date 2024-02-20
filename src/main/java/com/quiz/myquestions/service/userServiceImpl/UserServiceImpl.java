@@ -9,6 +9,7 @@ import com.quiz.myquestions.service.mailService.MailService;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,7 +19,7 @@ import org.springframework.util.StringUtils;
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -28,8 +29,6 @@ public class UserServiceImpl implements UserService {
     private final MailService mailService;
 
 
-
-
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
@@ -37,7 +36,6 @@ public class UserServiceImpl implements UserService {
     public void deleteById(int id) {
         userRepository.deleteById(id);
     }
-
 
 
     public Page<User> findByUserRole(@NotNull User user, Pageable pageable) {

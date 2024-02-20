@@ -43,4 +43,14 @@ public class MockData {
                 .userType(UserType.valueOf("TEACHER"))
                 .build();
     }
+
+    public static User saveUser (){
+        return User.builder()
+                .name("Name")
+                .surname("Doe")
+                .email("jane.doe@example.org")
+                .password("1111")
+                .userType(UserType.valueOf("TEACHER"))
+                .build();
+    }
 }
